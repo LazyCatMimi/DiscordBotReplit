@@ -1,5 +1,6 @@
 # DiscordBotReplit
-A Discord bot. Deployed on Replit.
+A Discord bot. Deployed on Replit. 
+https://replit.com/@mimiyayaya/BottheBot#deploy-commands.js
 
 
 FUNCTIONS:
