@@ -11,6 +11,6 @@ module.exports = {
 	async execute(interaction) {
     //get user inputs
     const string = interaction.options.getString('input');
-		await interaction.reply('\nHappy Birthday to you\nHappy Birthday to you\nHappy Birthday dear ' + string +'\nHappy Birthday to you!\nWe wish you a happy birthday! <3');
+		await interaction.reply(`\nHappy Birthday to you\nHappy Birthday to you\nHappy Birthday dear ${string}\nHappy Birthday to you!\nWe wish you a happy birthday! <3`);
 	},
 };

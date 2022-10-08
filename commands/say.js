@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
-//spam user's inputted message 3 times
+//say something the user tells the bot to say anonymously
 module.exports = {
 	data: new SlashCommandBuilder()
-    .setName('spam')
-    .setDescription('Spam something 3 times.')
+    .setName('say')
+    .setDescription('Say something anonymously through Yeeboi')
     .addStringOption(option =>
 		  option.setName('input')
 			  .setDescription('The input to echo back')
@@ -11,9 +11,7 @@ module.exports = {
 	async execute(interaction) {
       //get user inputs
       const string = interaction.options.getString('input');
-		  interaction.reply('spamming 3 times!');
-      for (let i = 0; i < 3; i++){
-        await interaction.channel.send(string);
-      }
+		  interaction.reply({ content: 'message sent anonymously', ephemeral: true });
+      await interaction.channel.send(string);
 	},
 };
