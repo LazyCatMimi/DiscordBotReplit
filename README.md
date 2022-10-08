@@ -7,20 +7,23 @@ NOTE: most of the code in deploy-commands.js and index.js were pulled from the D
 
 FUNCTIONS:
 
+/flipcoin
+-heads or tails?
+
 /help
--displays all available commands.
+-List all the commands avaiable
 
 /ping
--replies with pong for testing.
+-Replies with Pong!
+
+/say
+-Say something anonymously through Yeeboi
 
 /server
--display server info.
+-Replies with server info!
 
-/spam [input]
--spam something 3 times.
+/singbday
+-Sing a bday song to someone!
 
-/singbday [input]
--sing the birthday song to someone.
-
-/flipcoin
--flip a coin.
+/spam
+-Spam something 3 times.
