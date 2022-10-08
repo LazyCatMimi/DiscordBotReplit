@@ -1,3 +1,5 @@
+//!!NOTE: most of the code in deploy-commands.js and index.js were pulled from the DISCORD.JS GUIDE & DOCUMENTATION. Individual command files in commands folder were done by me
+//https://discordjs.guide/creating-your-bot/#resulting-code
 
 //express web server
 const express = require("express");
@@ -12,7 +14,7 @@ app.get("/", (req, res) => {
 })
 
 //discord stuff
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Collection, Client, GatewayIntentBits } = require('discord.js');
 
 // Create a new client instance
 const client = new Client({
@@ -22,45 +24,41 @@ const client = new Client({
   ]
 })
 
+//compile all commands in separate files
+const fs = require('node:fs');
+const path = require('node:path');
+
+client.commands = new Collection();
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const filePath = path.join(commandsPath, file);
+	const command = require(filePath);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
+	client.commands.set(command.data.name, command);
+}
+
+
 //reply only when user message is a command
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
     
-	const { commandName } = interaction;
-  //get user inputs
-  const string = interaction.options.getString('input');
+	const command = interaction.client.commands.get(interaction.commandName);
 
-  //commands and their functions
-  switch (commandName){
-    case 'ping': //ping command
-      await interaction.reply('Pong!');
-      break;
-    case 'server': //server command
-      await interaction.reply(`Date Created: ${interaction.guild.createdAt}`);
-      break; 
-    case 'help': //help command
-      await interaction.reply('Hello! My name is Yeeboi. I am bot. Beep Boop.\n I can:\n`/ping\nreplies with pong for testing.\n\n/server\ndisplay server info.\n\n/spam [input]\nspam something.\n\n/singbday [input]\nsing the birthday song to someone.`');
-      break;
-    case 'spam': //spam command
-      interaction.reply('spamming 3 times!');
-      for (var i = 0; i < 3; i++){
-        delay(2000);
-        await interaction.channel.send(string);
-      }
-      break;
-    case 'singbday': //sing happybday command
-      await interaction.reply(singBday(string));
-      break;
-  }
+	if (!command) return;
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+	}
 });
 
 // Login to Discord with  client's token
 client.login(process.env.token);
-
-//happybday function
-function singBday(string){
-  return '\nHappy Birthday to you\nHappy Birthday to you\nHappy Birthday dear ' + string +'\nHappy Birthday to you!\nWe wish you a happy birthday! <3';
-}
 
 //delay time
 function delay(time) {
