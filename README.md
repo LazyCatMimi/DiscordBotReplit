@@ -16,3 +16,6 @@ FUNCTIONS:
 
 /singbday [input]
 -sing the birthday song to someone.
+
+/flipcoin
+-flip a coin.
