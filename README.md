@@ -2,8 +2,7 @@
 A Discord bot. Deployed on Replit. 
 https://replit.com/@mimiyayaya/BottheBot#deploy-commands.js
 
-NOTE: most of the code in deploy-commands.js and index.js were pulled from the DISCORD.JS GUIDE & DOCUMENTATION. Individual command files in commands folder were done by me
-https://discordjs.guide/creating-your-bot/#resulting-code
+NOTE: most of the code in deploy-commands.js and index.js were pulled from the DISCORD.JS GUIDE & DOCUMENTATION (https://discordjs.guide/creating-your-bot/#resulting-code). Individual command files in commands folder were done by me.
 
 
 FUNCTIONS:
