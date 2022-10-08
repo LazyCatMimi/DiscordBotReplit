@@ -7,6 +7,9 @@ NOTE: most of the code in deploy-commands.js and index.js were pulled from the D
 
 FUNCTIONS:
 
+/help
+-displays all available commands.
+
 /ping
 -replies with pong for testing.
 
