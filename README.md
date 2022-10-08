@@ -7,6 +7,9 @@ NOTE: most of the code in deploy-commands.js and index.js were pulled from the D
 
 FUNCTIONS:
 
+/ask8ball
+-Ask a question to the magical 8 ball.
+
 /flipcoin
 -heads or tails?
 
